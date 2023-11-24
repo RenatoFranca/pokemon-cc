@@ -1,10 +1,9 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import PageLayout from "./page.layout";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <PageLayout>
       <h1>Pokemon CC</h1>
-    </main>
+    </PageLayout>
   );
 }
