@@ -1,9 +1,7 @@
-import PageLayout from "./page.layout";
+import Page from "./components/home";
 
-export default function Home() {
-  return (
-    <PageLayout>
-      <h1>Pokemon CC</h1>
-    </PageLayout>
-  );
-}
+const App = () => {
+  return <Page />;
+};
+
+export default App;

@@ -1,3 +1,3 @@
-export type PageLayoutProps = {
+export type HomeLayoutProps = {
   children: React.ReactNode;
 };
