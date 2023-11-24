@@ -1,3 +1,4 @@
+import usePokemon from "@/app/hooks/usePokemon";
 import HomeLayout from "./home.layout";
 
 export default function Home() {
