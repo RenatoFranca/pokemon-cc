@@ -39,8 +39,4 @@ describe("PokemonCard", () => {
   it("should have a pokemon type", () => {
     expect(screen.getByText(/electric/i)).toBeInTheDocument();
   });
-
-  it("should have an action button to see more details", () => {
-    expect(screen.getByText(/See details/i)).toBeInTheDocument();
-  });
 });

@@ -1,32 +1,69 @@
-import { Box, Container, Grid } from "@mui/material";
-import { PokemonResponse } from "./PokemonList.types";
+"use client";
+
+import { Container, Grid } from "@mui/material";
 import PokemonCard from "../PokemonCard";
+import { useEffect, useRef, useState } from "react";
+import useSWR from "swr";
 
-const getPokemonList = async (): Promise<PokemonResponse> => {
-  const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10");
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
+const PokemonList = () => {
+  const [page, setPage] = useState(0);
+  const { data, error, isLoading } = useSWR(
+    `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${page * 20}`,
+    fetcher
+  );
+  const [pokemonList, setPokemonList] = useState<any>([]);
+  const [hasMore, setHasMore] = useState(true);
+
+  console.log("pokemonList", pokemonList);
+
+  const elementRef = useRef(null);
+
+  console.log("data", data);
+
+  function onIntersection(entries) {
+    const [firstEntry] = entries;
+
+    console.log("onIntersection", data);
+    if (firstEntry.isIntersecting && hasMore) {
+      if (data?.next) {
+        setPokemonList((prevList) => [...prevList, ...data?.results]);
+        setPage((prevPage) => prevPage + 1);
+      } else {
+        setHasMore(false);
+      }
+    }
   }
 
-  return response.json();
-};
+  useEffect(() => {
+    const observer = new IntersectionObserver(onIntersection, {
+      rootMargin: "200px 0 0 0",
+    });
 
-const PokemonList = async () => {
-  const { results } = await getPokemonList();
+    if (observer && elementRef.current) {
+      observer.observe(elementRef.current);
+    }
 
-  console.log("results", results);
+    return () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  }, [data]);
 
   return (
     <Container>
       <h1>Pokemon List</h1>
 
       <Grid container spacing={2} justifyContent="center">
-        {results.map((pokemon, index) => (
-          <Grid key={index} item xs={6} md={4} lg={3}>
-            <PokemonCard name={pokemon.name} url={pokemon.url} />
-          </Grid>
-        ))}
+        {pokemonList &&
+          pokemonList.map((pokemon, index) => (
+            <Grid key={index} item xs={6} md={4} lg={3}>
+              <PokemonCard name={pokemon.name} url={pokemon.url} />
+            </Grid>
+          ))}
+        {hasMore && <div ref={elementRef}>Loading...</div>}
       </Grid>
     </Container>
   );

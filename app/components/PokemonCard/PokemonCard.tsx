@@ -1,51 +1,45 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-} from "@mui/material";
+"use client";
+
+import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
 import { PokemonCardProps } from "./PokemonCard.types";
 import Image from "next/image";
 import { CardImage } from "./PokemonCard.styles";
+import useSWR from "swr";
 
-const getPokemonDetails = async (url: string): Promise<any> => {
-  const response = await fetch(url);
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
+const PokemonCard = ({ name, url }: PokemonCardProps) => {
+  const { data, error, isLoading } = useSWR(url, fetcher);
 
-  return response.json();
-};
-
-const PokemonCard = async ({ name, url }: PokemonCardProps) => {
-  const pokemon = await getPokemonDetails(url);
-
-  const types = pokemon.types.map((type: any) => type.type.name).join(", ");
+  const types = data?.types.map((type) => type.type.name).join(", ");
 
   return (
     <Card variant="outlined">
-      <CardImage>
-        <Image
-          src={pokemon.sprites.front_default}
-          alt={name}
-          height={200}
-          width={200}
-          style={{ objectFit: "contain", width: "100%" }}
-        />
-      </CardImage>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {types}
-        </Typography>
-        <Typography variant="h5" component="div">
-          {name}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">See details</Button>
-      </CardActions>
+      {!isLoading && (
+        <CardActionArea>
+          <CardImage>
+            <Image
+              src={data.sprites.front_default}
+              alt={name}
+              height={200}
+              width={200}
+              style={{ objectFit: "contain", width: "100%" }}
+            />
+          </CardImage>
+          <CardContent>
+            <Typography
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              {types}
+            </Typography>
+            <Typography variant="h5" component="div">
+              {name}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      )}
     </Card>
   );
 };
