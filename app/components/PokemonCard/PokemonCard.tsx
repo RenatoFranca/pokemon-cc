@@ -3,16 +3,14 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardMedia,
   Typography,
 } from "@mui/material";
-import { PokemonCardProps } from "./pokemon-card.types";
+import { PokemonCardProps } from "./PokemonCard.types";
 import Image from "next/image";
-import { CardImage } from "./pokemon-card.styles";
+import { CardImage } from "./PokemonCard.styles";
 
 const getPokemonDetails = async (url: string): Promise<any> => {
   const response = await fetch(url);
-  console.log("poke", response);
 
   if (!response.ok) {
     throw new Error("Failed to fetch data");
@@ -24,7 +22,7 @@ const getPokemonDetails = async (url: string): Promise<any> => {
 const PokemonCard = async ({ name, url }: PokemonCardProps) => {
   const pokemon = await getPokemonDetails(url);
 
-  console.log("pokemon", pokemon.types);
+  const types = pokemon.types.map((type: any) => type.type.name).join(", ");
 
   return (
     <Card variant="outlined">
@@ -39,7 +37,7 @@ const PokemonCard = async ({ name, url }: PokemonCardProps) => {
       </CardImage>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day!
+          {types}
         </Typography>
         <Typography variant="h5" component="div">
           {name}

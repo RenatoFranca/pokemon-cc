@@ -1,6 +1,6 @@
 import { Box, Container, Grid } from "@mui/material";
-import { PokemonResponse } from "./pokemon-list.types";
-import PokemonCard from "../pokemon-card";
+import { PokemonResponse } from "./PokemonList.types";
+import PokemonCard from "../PokemonCard";
 
 const getPokemonList = async (): Promise<PokemonResponse> => {
   const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10");

@@ -1,5 +1,5 @@
-import { Main } from "./home.styles";
-import { HomeLayoutProps } from "./home.types";
+import { Main } from "./Home.styles";
+import { HomeLayoutProps } from "./Home.types";
 
 const HomeLayout = ({ children }: HomeLayoutProps) => {
   return <Main>{children}</Main>;

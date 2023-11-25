@@ -1,5 +1,5 @@
-import PokemonList from "../pokemon-list";
-import HomeLayout from "./home.layout";
+import PokemonList from "../PokemonList";
+import HomeLayout from "./Home.layout";
 
 export default function Home() {
   return (
