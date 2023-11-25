@@ -7,6 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 import { PokemonCardProps } from "./pokemon-card.types";
+import Image from "next/image";
+import { CardImage } from "./pokemon-card.styles";
 
 const getPokemonDetails = async (url: string): Promise<any> => {
   const response = await fetch(url);
@@ -26,11 +28,15 @@ const PokemonCard = async ({ name, url }: PokemonCardProps) => {
 
   return (
     <Card variant="outlined">
-      <CardMedia
-        sx={{ height: 140 }}
-        image={pokemon.sprites.front_default}
-        title="green iguana"
-      />
+      <CardImage>
+        <Image
+          src={pokemon.sprites.front_default}
+          alt={name}
+          height={200}
+          width={200}
+          style={{ objectFit: "contain", width: "100%" }}
+        />
+      </CardImage>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Word of the Day!

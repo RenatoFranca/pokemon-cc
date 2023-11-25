@@ -1,9 +1,9 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import { PokemonResponse } from "./pokemon-list.types";
 import PokemonCard from "../pokemon-card";
 
 const getPokemonList = async (): Promise<PokemonResponse> => {
-  const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=5");
+  const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10");
 
   if (!response.ok) {
     throw new Error("Failed to fetch data");
@@ -21,11 +21,13 @@ const PokemonList = async () => {
     <Container>
       <h1>Pokemon List</h1>
 
-      <>
+      <Grid container spacing={2} justifyContent="center">
         {results.map((pokemon, index) => (
-          <PokemonCard key={index} name={pokemon.name} url={pokemon.url} />
+          <Grid key={index} item xs={6} md={4} lg={3}>
+            <PokemonCard name={pokemon.name} url={pokemon.url} />
+          </Grid>
         ))}
-      </>
+      </Grid>
     </Container>
   );
 };
