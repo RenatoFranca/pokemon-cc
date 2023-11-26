@@ -8,3 +8,11 @@ export type PokemonCardProps = {
 export type TypographyProps = {
   component?: ElementType;
 };
+
+type Sprites = {
+  front_default: string;
+};
+
+export type PokemonResponse = {
+  sprites: Sprites;
+};

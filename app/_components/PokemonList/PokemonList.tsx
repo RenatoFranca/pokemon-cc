@@ -28,7 +28,7 @@ const PokemonList = () => {
   return (
     <Container>
       <h2>Pokemon List</h2>
-      <Grid container spacing={2}>
+      <Grid container spacing={{ xs: 2, md: 4 }}>
         {list.map((pokemon, index) => (
           <Grid
             ref={list.length === index + 1 ? ref : null}
