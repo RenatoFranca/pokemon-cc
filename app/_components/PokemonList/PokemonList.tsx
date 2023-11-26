@@ -1,69 +1,47 @@
 "use client";
 
-import { Container, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import PokemonCard from "../PokemonCard";
 import { useEffect, useRef, useState } from "react";
-import useSWR from "swr";
+import useSWRInfinite from "swr/infinite";
+import { useInView } from "react-intersection-observer";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const PokemonList = () => {
-  const [page, setPage] = useState(0);
-  const { data, error, isLoading } = useSWR(
-    `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${page * 20}`,
+  const { data, setSize, size, isValidating } = useSWRInfinite(
+    (index) =>
+      `https://pokeapi.co/api/v2/pokemon?offset=${index * 20}&limit=20`,
     fetcher
   );
-  const [pokemonList, setPokemonList] = useState<any>([]);
-  const [hasMore, setHasMore] = useState(true);
 
-  console.log("pokemonList", pokemonList);
+  const [ref, inView] = useInView();
 
-  const elementRef = useRef(null);
+  const list: any[] = data ? data.map((v) => v.results).flat() : [];
 
-  console.log("data", data);
-
-  function onIntersection(entries) {
-    const [firstEntry] = entries;
-
-    console.log("onIntersection", data);
-    if (firstEntry.isIntersecting && hasMore) {
-      if (data?.next) {
-        setPokemonList((prevList) => [...prevList, ...data?.results]);
-        setPage((prevPage) => prevPage + 1);
-      } else {
-        setHasMore(false);
-      }
-    }
-  }
-
+  console.log("In view", size);
   useEffect(() => {
-    const observer = new IntersectionObserver(onIntersection, {
-      rootMargin: "200px 0 0 0",
-    });
-
-    if (observer && elementRef.current) {
-      observer.observe(elementRef.current);
+    if (inView && !isValidating) {
+      // setSize((size) => size + 1);
     }
-
-    return () => {
-      if (observer) {
-        observer.disconnect();
-      }
-    };
-  }, [data]);
+  }, [inView]);
 
   return (
     <Container>
-      <h1>Pokemon List</h1>
-
-      <Grid container spacing={2} justifyContent="center">
-        {pokemonList &&
-          pokemonList.map((pokemon, index) => (
-            <Grid key={index} item xs={6} md={4} lg={3}>
-              <PokemonCard name={pokemon.name} url={pokemon.url} />
-            </Grid>
-          ))}
-        {hasMore && <div ref={elementRef}>Loading...</div>}
+      <h2>Pokemon List</h2>
+      <Grid container spacing={2}>
+        {list.map((pokemon, index) => (
+          <Grid
+            ref={list.length === index + 1 ? ref : null}
+            key={index}
+            item
+            xs={6}
+            md={4}
+            lg={3}
+          >
+            <PokemonCard name={pokemon.name} url={pokemon.url} />
+          </Grid>
+        ))}
       </Grid>
     </Container>
   );
