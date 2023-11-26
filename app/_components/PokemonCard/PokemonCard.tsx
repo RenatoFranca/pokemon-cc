@@ -5,9 +5,7 @@ import { PokemonCardProps } from "./PokemonCard.types";
 import Image from "next/image";
 import { CardImage, CardLink, Name } from "./PokemonCard.styles";
 import useSWR from "swr";
-import Link from "next/link";
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import fetcher from "@/app/_utils/fetcher";
 
 const PokemonCard = ({ name, url }: PokemonCardProps) => {
   const { data, error, isLoading } = useSWR(url, fetcher);

@@ -5,8 +5,7 @@ import PokemonCard from "../PokemonCard";
 import { useEffect, useRef, useState } from "react";
 import useSWRInfinite from "swr/infinite";
 import { useInView } from "react-intersection-observer";
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import fetcher from "@/app/_utils/fetcher";
 
 const PokemonList = () => {
   const { data, setSize, size, isValidating } = useSWRInfinite(
