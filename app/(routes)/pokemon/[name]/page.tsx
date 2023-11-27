@@ -6,7 +6,7 @@ import { Container } from "@mui/material";
 import useSWR from "swr";
 
 const Page = ({ params }: { params: { name: string } }) => {
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR<any>(
     `https://pokeapi.co/api/v2/pokemon/${params.name}`,
     fetcher
   );
