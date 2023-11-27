@@ -1,6 +1,7 @@
 "use client";
 
 import Evolution from "@/app/_components/Evolution/Evolution";
+import PokemonDetails from "@/app/_components/PokemonDetails";
 import { Container } from "@mui/material";
 import Image from "next/image";
 import useSWR from "swr";
@@ -30,9 +31,15 @@ const Page = ({ params }: { params: { name: string } }) => {
   // } = useSWR(dataSpecies?.evolution_chain?.url);
 
   return (
-    <Container sx={{ marginTop: 10 }}>
-      My Pokemon: {params.name}
-      {data && (
+    <Container
+      sx={{ marginTop: 10, display: "flex", justifyContent: "center" }}
+    >
+      <PokemonDetails
+        name={params.name}
+        image={data?.sprites?.front_default}
+        types={data?.types}
+      />
+      {/* {data && (
         <>
           <Image
             src={data.sprites.front_default}
@@ -66,7 +73,7 @@ const Page = ({ params }: { params: { name: string } }) => {
 
           <Evolution url={dataSpecies?.evolution_chain?.url} />
         </>
-      )}
+      )} */}
     </Container>
   );
 };
