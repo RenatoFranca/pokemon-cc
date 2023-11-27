@@ -11,11 +11,12 @@ import {
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { CardHeader, Image } from "./PokemonDetails.styles";
 import Link from "next/link";
+import PokemonTypes from "../PokemonTypes";
 
 type PokemonDetailsProps = {
   name: string;
   image: string;
-  types: { type: { name: string } }[];
+  types: { type: { name: string }; slot: number }[];
 };
 
 const PokemonDetails = ({ name, image, types }: PokemonDetailsProps) => {
@@ -35,12 +36,7 @@ const PokemonDetails = ({ name, image, types }: PokemonDetailsProps) => {
       </CardHeader>
       {image && <Image src={image} alt={name} />}
       <CardContent>
-        <Stack direction="row" spacing={1} justifyContent="center">
-          {types &&
-            types.map(({ type, slot }) => (
-              <Chip key={slot} size="small" label={type.name} />
-            ))}
-        </Stack>
+        <PokemonTypes types={types} />
       </CardContent>
     </Card>
   );
