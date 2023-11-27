@@ -1,4 +1,4 @@
-This is project for a `Code Challenge` that uses [PokéAPI](https://pokeapi.co) to create a Pokédex.
+This project uses the [PokéAPI](https://pokeapi.co) to create a Pokédex.
 
 ## Getting Started
 
