@@ -42,12 +42,12 @@ const PokemonDetails = ({
 
     if (storage) {
       favorites = JSON.parse(storage);
-      favorites.push(id);
-
-      localStorage.setItem("favorite", JSON.stringify(favorites));
-
-      setIsFavorite(true);
     }
+
+    favorites.push(id);
+    localStorage.setItem("favorite", JSON.stringify(favorites));
+
+    setIsFavorite(true);
   };
 
   const removeFavorite = (id: number) => {
