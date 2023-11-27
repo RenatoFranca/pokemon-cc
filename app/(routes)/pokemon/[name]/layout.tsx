@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
 
   return {
-    title: `${capitalizedName} | Pokemon CC`,
+    title: `${capitalizedName} | Pokémon CC`,
   };
 }
 

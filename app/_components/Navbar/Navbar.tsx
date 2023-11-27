@@ -15,7 +15,7 @@ const Navbar = () => {
             sx={{ flexGrow: 1, textDecoration: "none" }}
             color="white"
           >
-            Pokemon CC
+            Pokémon CC
           </Typography>
           {/* @TODO */}
           {/* <Button LinkComponent={Link} href="/favorites" color="inherit">

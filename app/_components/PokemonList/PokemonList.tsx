@@ -24,13 +24,13 @@ const PokemonList = () => {
   console.log("In view", size);
   useEffect(() => {
     if (inView && !isValidating) {
-      // setSize((size) => size + 1);
+      setSize((size) => size + 1);
     }
   }, [inView]);
 
   return (
     <Container sx={{ marginTop: 10, marginBottom: 4 }}>
-      <h2>Pokemon List</h2>
+      <h2>Pokemén List</h2>
       <Grid container spacing={{ xs: 2, md: 4 }}>
         {list.map((pokemon, index) => (
           <Grid

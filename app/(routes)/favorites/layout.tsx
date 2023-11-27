@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Favorites | Pokemon CC",
-  description: "My favorite pokemons",
+  title: "Favorites | Pokémon CC",
+  description: "My favorite Pokémon",
 };
 
 const FavoriteLayout = ({ children }: { children: React.ReactNode }) => {

@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is project for a `Code Challenge` that uses [PokéAPI](https://pokeapi.co) to create a Pokédex.
 
 ## Getting Started
 
-First, run the development server:
+### Install the dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run the project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the Pokédex.
 
-## Learn More
+## Technologies
 
-To learn more about Next.js, take a look at the following resources:
+**[Next.js](https://nextjs.org)**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project uses one of the most used `React Framework` to take advantage of built-in features like:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Routing
+- Server and client components
+- Error handling
+- Composition patterns
 
-## Deploy on Vercel
+**[MUI](https://mui.com)**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+MUI was chosen as the `React UI framework` for this project. It is a popular choice for React developers and has a large community. It has a lot of `ready-to-use` components inside a React project and a good feature is the Themes, that is used in this project to define the colors for the Pokémon types `Chips`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**[SWR](https://swr.vercel.app)**
+
+It is a `React Hook` for data fetching. Simple to use.
+
+**[react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)**
+
+A lib that uses the `Intersection Observer API` that is used in this project to create an infinity scroll.
+
+## Next steps
+
+This is a new project, there was not much time available and as expected it needs a lot of improvements:
+
+- Unit tests
+- Favorite option
+- Display more data in the Pokémon detail page
+- Show the evolution chain
+- Improve the layout
+- Some components need improvements:
+  - `PokemonList.tsx`
+  - `app/template.tsx`
+- Add a better pre-loader in the Pokémon list page
+- Add a pre-loader in the Pokémon details page

@@ -11,8 +11,6 @@ const Page = ({ params }: { params: { name: string } }) => {
     fetcher
   );
 
-  console.log(data?.species?.url);
-
   // Species
   const {
     data: dataSpecies,

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pokemon CC",
+  title: "Pokémon CC",
   description: "Gotta Catch 'Em All",
 };
 
