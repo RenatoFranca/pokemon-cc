@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import PokemonCard from "../PokemonCard";
 import { useEffect } from "react";
 import useSWRInfinite from "swr/infinite";
@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 import fetcher from "@/app/_utils/fetcher";
 
 const PokemonList = () => {
-  const { data, setSize, size, isValidating } = useSWRInfinite(
+  const { data, setSize, isValidating } = useSWRInfinite(
     (index) =>
       `https://pokeapi.co/api/v2/pokemon?offset=${index * 20}&limit=20`,
     fetcher,
@@ -21,7 +21,6 @@ const PokemonList = () => {
 
   const list: any[] = data ? data.map((v) => v.results).flat() : [];
 
-  console.log("In view", size);
   useEffect(() => {
     if (inView && !isValidating) {
       setSize((size) => size + 1);
@@ -41,7 +40,7 @@ const PokemonList = () => {
             md={4}
             lg={3}
           >
-            <PokemonCard name={pokemon.name} url={pokemon.url} />
+            <PokemonCard url={pokemon.url} />
           </Grid>
         ))}
       </Grid>

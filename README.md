@@ -44,7 +44,7 @@ A lib that uses the `Intersection Observer API` that is used in this project to 
 This is a new project, there was not much time available and as expected it needs a lot of improvements:
 
 - Unit tests
-- Favorite option
+- ~~Favorite option~~
 - Display more data in the Pokémon detail page
 - Show the evolution chain
 - Improve the layout

@@ -6,7 +6,7 @@ import { CardLink, Image, Name, PokedexNumber } from "./PokemonCard.styles";
 import useSWR from "swr";
 import fetcher from "@/app/_utils/fetcher";
 
-const PokemonCard = ({ name, url }: PokemonCardProps) => {
+const PokemonCard = ({ url }: PokemonCardProps) => {
   /*
     The useSWR hook is used to fetch data. We don't need to take care of the
     errors since Next.js is doing that for us with the error.txs file.
@@ -22,7 +22,7 @@ const PokemonCard = ({ name, url }: PokemonCardProps) => {
   if (isLoading) return <div>Loading...</div>;
 
   // Using destructuring to keep the code as clean as possible
-  const { id, sprites } = data!!;
+  const { id, name, sprites } = data!!;
 
   return (
     /*

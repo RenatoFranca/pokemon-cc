@@ -1,7 +1,6 @@
 import { ElementType } from "react";
 
 export type PokemonCardProps = {
-  name: string;
   url: string;
 };
 
@@ -16,5 +15,6 @@ type Sprites = {
 
 export type PokemonResponse = {
   id: number;
+  name: string;
   sprites: Sprites;
 };

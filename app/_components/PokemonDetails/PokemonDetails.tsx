@@ -4,10 +4,16 @@ import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import ScaleIcon from "@mui/icons-material/Scale";
 import HeightIcon from "@mui/icons-material/Height";
-import { CardHeader, Image } from "./PokemonDetails.styles";
+import {
+  CardHeader,
+  Favorite,
+  Image,
+  NotFavorite,
+} from "./PokemonDetails.styles";
 import Link from "next/link";
 import PokemonTypes from "../PokemonTypes";
 import { PokedexNumber } from "../PokemonCard/PokemonCard.styles";
+import { use, useEffect, useState } from "react";
 
 type PokemonDetailsProps = {
   id: number;
@@ -28,6 +34,44 @@ const PokemonDetails = ({
   height,
   abilities,
 }: PokemonDetailsProps) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const storage = localStorage.getItem("favorite");
+
+  const addFavorite = (id: number) => {
+    let favorites = [];
+
+    if (storage) {
+      favorites = JSON.parse(storage);
+      favorites.push(id);
+
+      localStorage.setItem("favorite", JSON.stringify(favorites));
+
+      setIsFavorite(true);
+    }
+  };
+
+  const removeFavorite = (id: number) => {
+    let favorites = [];
+
+    if (storage) {
+      favorites = JSON.parse(storage);
+      favorites = favorites.filter((f: number) => f !== id);
+
+      localStorage.setItem("favorite", JSON.stringify(favorites));
+
+      setIsFavorite(false);
+    }
+  };
+
+  useEffect(() => {
+    if (storage) {
+      let favorites = JSON.parse(storage);
+      const hasFavorite = favorites.find((f: number) => f == id);
+
+      setIsFavorite(hasFavorite);
+    }
+  }, [id, storage]);
+
   return (
     <Card sx={{ maxWidth: 500, width: "100%", position: "relative" }}>
       <PokedexNumber
@@ -50,6 +94,20 @@ const PokemonDetails = ({
         <Typography variant="h4" textTransform="capitalize">
           {name}
         </Typography>
+        {!isFavorite && (
+          <NotFavorite
+            onClick={() => addFavorite(id)}
+            fontSize="large"
+            sx={{ alignSelf: "center" }}
+          />
+        )}
+        {isFavorite && (
+          <Favorite
+            onClick={() => removeFavorite(id)}
+            fontSize="large"
+            sx={{ alignSelf: "center" }}
+          />
+        )}
       </CardHeader>
       {image && <Image src={image} alt={name} />}
       <CardContent>

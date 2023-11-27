@@ -1,6 +1,6 @@
 "use client";
 
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -18,9 +18,9 @@ const Navbar = () => {
             Pokémon CC
           </Typography>
           {/* @TODO */}
-          {/* <Button LinkComponent={Link} href="/favorites" color="inherit">
+          <Button LinkComponent={Link} href="/favorites" color="inherit">
             Favorites
-          </Button> */}
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
