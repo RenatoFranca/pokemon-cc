@@ -16,7 +16,7 @@ type PokemonDetailsProps = {
   types: { type: { name: string }; slot: number }[];
   weight: number;
   height: number;
-  abilities: { ability: { name: string } }[];
+  abilities: { ability: { name: string }; slot: number }[];
 };
 
 const PokemonDetails = ({
