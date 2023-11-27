@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, TypographyProps, styled } from "@mui/material";
+import { Typography, TypographyProps, styled } from "@mui/material";
 import NextImage from "next/image";
 import Link from "next/link";
 
@@ -11,17 +11,12 @@ CardLink.defaultProps = {
   passHref: true,
 };
 
-// The ImageBox is used to center the image
-export const ImageBox = styled(Box)`
-  justify-content: center;
-  display: flex;
-`;
-
 export const Image = styled(NextImage)`
   object-fit: contain;
   height: auto;
   maxheight: 200;
   width: 100%;
+  padding-top: 24px;
 `;
 Image.defaultProps = {
   height: 200,
@@ -36,8 +31,19 @@ Image.defaultProps = {
 */
 export const Name = styled(Typography)<TypographyProps>`
   text-align: center;
+  text-transform: capitalize;
 `;
 Name.defaultProps = {
   component: "div",
   variant: "h5",
 };
+
+// Using MUI's theme spacing to add padding
+export const PokedexNumber = styled(Typography)<TypographyProps>(
+  ({ theme }) => ({
+    position: "absolute",
+    right: 0,
+    padding: theme.spacing(1),
+    fontSize: "0.8rem",
+  })
+);

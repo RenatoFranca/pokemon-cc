@@ -14,7 +14,7 @@ import Link from "next/link";
 const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" enableColorOnDark>
+      <AppBar position="fixed" enableColorOnDark>
         <Toolbar>
           {/* <IconButton
             size="large"

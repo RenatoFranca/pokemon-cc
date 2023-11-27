@@ -30,7 +30,7 @@ const Page = ({ params }: { params: { name: string } }) => {
   // } = useSWR(dataSpecies?.evolution_chain?.url);
 
   return (
-    <Container>
+    <Container sx={{ marginTop: 10 }}>
       My Pokemon: {params.name}
       {data && (
         <>

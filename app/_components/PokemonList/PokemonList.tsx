@@ -2,7 +2,7 @@
 
 import { Box, Container, Grid } from "@mui/material";
 import PokemonCard from "../PokemonCard";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import useSWRInfinite from "swr/infinite";
 import { useInView } from "react-intersection-observer";
 import fetcher from "@/app/_utils/fetcher";
@@ -11,7 +11,10 @@ const PokemonList = () => {
   const { data, setSize, size, isValidating } = useSWRInfinite(
     (index) =>
       `https://pokeapi.co/api/v2/pokemon?offset=${index * 20}&limit=20`,
-    fetcher
+    fetcher,
+    {
+      revalidateOnFocus: false,
+    }
   );
 
   const [ref, inView] = useInView();
@@ -26,7 +29,7 @@ const PokemonList = () => {
   }, [inView]);
 
   return (
-    <Container>
+    <Container sx={{ marginTop: 10, marginBottom: 4 }}>
       <h2>Pokemon List</h2>
       <Grid container spacing={{ xs: 2, md: 4 }}>
         {list.map((pokemon, index) => (

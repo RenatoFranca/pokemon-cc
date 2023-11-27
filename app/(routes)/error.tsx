@@ -16,7 +16,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <Container sx={{ textAlign: "center" }}>
+    <Container sx={{ textAlign: "center", marginTop: 10 }}>
       <h2>Something went wrong!</h2>
       <Button
         variant="contained"

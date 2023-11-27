@@ -2,7 +2,13 @@
 
 import { Card, CardActionArea, CardContent } from "@mui/material";
 import { PokemonCardProps, PokemonResponse } from "./PokemonCard.types";
-import { CardLink, Image, ImageBox, Name } from "./PokemonCard.styles";
+import {
+  CardLink,
+  Image,
+  ImageBox,
+  Name,
+  PokedexNumber,
+} from "./PokemonCard.styles";
 import useSWR from "swr";
 import fetcher from "@/app/_utils/fetcher";
 
@@ -14,13 +20,15 @@ const PokemonCard = ({ name, url }: PokemonCardProps) => {
     Read more about Next.js error handling here:
     https://nextjs.org/docs/app/building-your-application/routing/error-handling
   */
-  const { data, isLoading } = useSWR<PokemonResponse>(url, fetcher);
+  const { data, isLoading } = useSWR<PokemonResponse>(url, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   // Show a loading indicator while the data is loading
   if (isLoading) return <div>Loading...</div>;
 
-  // Destrucure the sprites to keep the code as clean as possible
-  const { sprites } = data!!;
+  // Using destructuring to keep the code as clean as possible
+  const { id, sprites } = data!!;
 
   return (
     /*
@@ -30,9 +38,10 @@ const PokemonCard = ({ name, url }: PokemonCardProps) => {
     <CardLink href={`/pokemon/${name}`}>
       <Card>
         <CardActionArea>
-          <ImageBox>
-            <Image src={sprites.front_default} alt={name} />
-          </ImageBox>
+          <PokedexNumber color="text.secondary" gutterBottom>
+            {`#${id.toString().padStart(4, "0")}`}
+          </PokedexNumber>
+          <Image src={sprites.front_default} alt={name} />
           <CardContent>
             <Name>{name}</Name>
           </CardContent>
