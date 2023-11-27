@@ -35,9 +35,9 @@ const PokemonDetails = ({
   abilities,
 }: PokemonDetailsProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const storage = localStorage.getItem("favorite");
 
   const addFavorite = (id: number) => {
+    const storage = localStorage.getItem("favorite");
     let favorites = [];
 
     if (storage) {
@@ -51,6 +51,7 @@ const PokemonDetails = ({
   };
 
   const removeFavorite = (id: number) => {
+    const storage = localStorage.getItem("favorite");
     let favorites = [];
 
     if (storage) {
@@ -64,13 +65,15 @@ const PokemonDetails = ({
   };
 
   useEffect(() => {
+    const storage = localStorage.getItem("favorite");
+
     if (storage) {
       let favorites = JSON.parse(storage);
       const hasFavorite = favorites.find((f: number) => f == id);
 
       setIsFavorite(hasFavorite);
     }
-  }, [id, storage]);
+  }, [id]);
 
   return (
     <Card sx={{ maxWidth: 500, width: "100%", position: "relative" }}>

@@ -6,13 +6,14 @@ import { useEffect, useState } from "react";
 
 const Page = () => {
   const [favorites, setFavorites] = useState<number[] | null>(null);
-  const storage = localStorage.getItem("favorite");
 
   useEffect(() => {
+    const storage = localStorage.getItem("favorite");
+
     if (storage) {
       setFavorites(JSON.parse(storage));
     }
-  }, [storage]);
+  }, []);
 
   return (
     <Container sx={{ marginTop: 10, marginBottom: 4 }}>
