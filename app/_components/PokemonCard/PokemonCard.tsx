@@ -2,13 +2,7 @@
 
 import { Card, CardActionArea, CardContent } from "@mui/material";
 import { PokemonCardProps, PokemonResponse } from "./PokemonCard.types";
-import {
-  CardLink,
-  Image,
-  ImageBox,
-  Name,
-  PokedexNumber,
-} from "./PokemonCard.styles";
+import { CardLink, Image, Name, PokedexNumber } from "./PokemonCard.styles";
 import useSWR from "swr";
 import fetcher from "@/app/_utils/fetcher";
 

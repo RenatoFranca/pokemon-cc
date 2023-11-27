@@ -1,12 +1,9 @@
 "use client";
 
-import Evolution from "@/app/_components/Evolution/Evolution";
 import PokemonDetails from "@/app/_components/PokemonDetails";
+import fetcher from "@/app/_utils/fetcher";
 import { Container } from "@mui/material";
-import Image from "next/image";
 import useSWR from "swr";
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Page = ({ params }: { params: { name: string } }) => {
   const { data, error, isLoading } = useSWR(
@@ -35,31 +32,18 @@ const Page = ({ params }: { params: { name: string } }) => {
       sx={{ marginTop: 10, display: "flex", justifyContent: "center" }}
     >
       <PokemonDetails
+        id={data?.id}
         name={params.name}
         image={data?.sprites?.front_default}
         types={data?.types}
+        weight={data?.weight}
+        height={data?.height}
+        abilities={data?.abilities}
       />
       {/* {data && (
         <>
-          <Image
-            src={data.sprites.front_default}
-            alt={params.name}
-            height={200}
-            width={200}
-            style={{
-              objectFit: "contain",
-              height: "auto",
-              maxHeight: 200,
-              width: "100%",
-            }}
-          />
           <ul>
             <li>#{dataSpecies?.order.toString().padStart(4, "0")}</li>
-            <li>
-              Types:{" "}
-              {data?.types &&
-                data.types.map(({ type }) => type.name).join(", ")}
-            </li>
             <li>Weight: {data.weight * 0.1} kg</li>
             <li>Height: {(data.height * 0.1).toFixed(1)} m</li>
             <li>

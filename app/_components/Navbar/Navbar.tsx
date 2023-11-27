@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  AppBar,
-  Box,
-  Button,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -16,15 +8,6 @@ const Navbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" enableColorOnDark>
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography
             variant="h6"
             component={Link}
@@ -34,8 +17,9 @@ const Navbar = () => {
           >
             Pokemon CC
           </Typography>
-          {/* <Button LinkComponent={Link} href="/" color="inherit">
-            Home
+          {/* @TODO */}
+          {/* <Button LinkComponent={Link} href="/favorites" color="inherit">
+            Favorites
           </Button> */}
         </Toolbar>
       </AppBar>
