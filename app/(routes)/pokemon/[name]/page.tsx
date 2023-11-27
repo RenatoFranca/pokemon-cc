@@ -11,20 +11,6 @@ const Page = ({ params }: { params: { name: string } }) => {
     fetcher
   );
 
-  // Species
-  const {
-    data: dataSpecies,
-    error: errorSpecies,
-    isLoading: isLoadingSpecies,
-  } = useSWR(data?.species?.url, fetcher);
-
-  // dataSpecies?.evolution_chain?.url
-  // const {
-  //   data: dataEvolution,
-  //   error: errorEvolution,
-  //   isLoading: isLoadingEvolution,
-  // } = useSWR(dataSpecies?.evolution_chain?.url);
-
   return (
     <Container
       sx={{ marginTop: 10, display: "flex", justifyContent: "center" }}
@@ -38,24 +24,6 @@ const Page = ({ params }: { params: { name: string } }) => {
         height={data?.height}
         abilities={data?.abilities}
       />
-      {/* {data && (
-        <>
-          <ul>
-            <li>#{dataSpecies?.order.toString().padStart(4, "0")}</li>
-            <li>Weight: {data.weight * 0.1} kg</li>
-            <li>Height: {(data.height * 0.1).toFixed(1)} m</li>
-            <li>
-              Abilities:{" "}
-              {data?.abilities &&
-                data.abilities.map(({ ability }) => ability.name).join(", ")}
-            </li>
-            <li>Base experience: {data.base_experience}</li>
-            <li>Color: {dataSpecies?.color?.name}</li>
-          </ul>
-
-          <Evolution url={dataSpecies?.evolution_chain?.url} />
-        </>
-      )} */}
     </Container>
   );
 };
