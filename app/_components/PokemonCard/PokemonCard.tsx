@@ -5,6 +5,7 @@ import { PokemonCardProps, PokemonResponse } from "./PokemonCard.types";
 import { CardLink, Image, Name, PokedexNumber } from "./PokemonCard.styles";
 import useSWR from "swr";
 import fetcher from "@/app/_utils/fetcher";
+import PokemonCardLoading from "./PokemonCard.loading";
 
 const PokemonCard = ({ url }: PokemonCardProps) => {
   /*
@@ -19,10 +20,12 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
   });
 
   // Show a loading indicator while the data is loading
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <PokemonCardLoading />;
 
   // Using destructuring to keep the code as clean as possible
   const { id, name, sprites } = data!!;
+  const pokedexNumber = `#${id.toString().padStart(4, "0")}`;
+  const pokemonImage = sprites.front_default;
 
   return (
     /*
@@ -32,10 +35,8 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
     <CardLink href={`/pokemon/${name}`}>
       <Card>
         <CardActionArea>
-          <PokedexNumber color="text.secondary" gutterBottom>
-            {`#${id.toString().padStart(4, "0")}`}
-          </PokedexNumber>
-          <Image src={sprites.front_default} alt={name} />
+          <PokedexNumber>{pokedexNumber}</PokedexNumber>
+          {pokemonImage && <Image src={pokemonImage} alt={name} />}
           <CardContent>
             <Name>{name}</Name>
           </CardContent>

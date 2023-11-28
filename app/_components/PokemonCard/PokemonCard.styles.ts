@@ -47,3 +47,8 @@ export const PokedexNumber = styled(Typography)<TypographyProps>(
     fontSize: "0.8rem",
   })
 );
+
+PokedexNumber.defaultProps = {
+  color: "textSecondary",
+  gutterBottom: true,
+};
