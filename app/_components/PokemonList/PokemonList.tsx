@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Grid } from "@mui/material";
+import { Box, CircularProgress, Container, Grid } from "@mui/material";
 import PokemonCard from "../PokemonCard";
 import { useEffect } from "react";
 import useSWRInfinite from "swr/infinite";
@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 import fetcher from "@/app/_utils/fetcher";
 
 const PokemonList = () => {
-  const { data, setSize, isValidating } = useSWRInfinite(
+  const { data, setSize, isLoading } = useSWRInfinite(
     (index) =>
       `https://pokeapi.co/api/v2/pokemon?offset=${index * 20}&limit=20`,
     fetcher,
@@ -21,8 +21,14 @@ const PokemonList = () => {
 
   const list: any[] = data ? data.map((v) => v.results).flat() : [];
 
+  const hasNextPage = () => {
+    const [lastPage] = data?.slice(-1) || [];
+
+    return lastPage?.next;
+  };
+
   useEffect(() => {
-    if (inView && !isValidating) {
+    if (inView && !isLoading && hasNextPage()) {
       setSize((size) => size + 1);
     }
   }, [inView]);
@@ -44,6 +50,11 @@ const PokemonList = () => {
           </Grid>
         ))}
       </Grid>
+      {!isLoading && (
+        <Box sx={{ display: "flex", justifyContent: "center", height: 100 }}>
+          <CircularProgress sx={{ alignSelf: "center" }} />
+        </Box>
+      )}
     </Container>
   );
 };
