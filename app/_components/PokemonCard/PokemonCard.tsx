@@ -6,6 +6,7 @@ import { CardLink, Image, Name, PokedexNumber } from "./PokemonCard.styles";
 import useSWR from "swr";
 import fetcher from "@/app/_utils/fetcher";
 import PokemonCardLoading from "./PokemonCard.loading";
+import { motion } from "framer-motion";
 
 const PokemonCard = ({ url }: PokemonCardProps) => {
   /*
@@ -32,17 +33,24 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
       Any component that is possible to move the props into the styled component
       file should be moved. This is to keep the component file with less code
     */
-    <CardLink href={`/pokemon/${name}`}>
-      <Card>
-        <CardActionArea>
-          <PokedexNumber>{pokedexNumber}</PokedexNumber>
-          {pokemonImage && <Image src={pokemonImage} alt={name} />}
-          <CardContent>
-            <Name>{name}</Name>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </CardLink>
+    <motion.div
+      initial={{ y: 10, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.5 }}
+      viewport={{ once: true }}
+    >
+      <CardLink href={`/pokemon/${name}`}>
+        <Card>
+          <CardActionArea>
+            <PokedexNumber>{pokedexNumber}</PokedexNumber>
+            {pokemonImage && <Image src={pokemonImage} alt={name} />}
+            <CardContent>
+              <Name>{name}</Name>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </CardLink>
+    </motion.div>
   );
 };
 

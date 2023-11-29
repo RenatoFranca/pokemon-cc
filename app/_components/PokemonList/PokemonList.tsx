@@ -17,7 +17,7 @@ const PokemonList = () => {
     }
   );
 
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({ rootMargin: "200px" });
 
   const list: any[] = data ? data.map((v) => v.results).flat() : [];
 
