@@ -1,8 +1,16 @@
 "use client";
 
-import { Card, CardActionArea, CardContent } from "@mui/material";
+import { CardActionArea, CardContent } from "@mui/material";
 import { PokemonCardProps, PokemonResponse } from "./PokemonCard.types";
-import { CardLink, Image, Name, PokedexNumber } from "./PokemonCard.styles";
+import {
+  Anchor,
+  Card,
+  CardLink,
+  Effects,
+  Image,
+  Name,
+  PokedexNumber,
+} from "./PokemonCard.styles";
 import useSWR from "swr";
 import fetcher from "@/app/_utils/fetcher";
 import PokemonCardLoading from "./PokemonCard.loading";
@@ -33,14 +41,10 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
       Any component that is possible to move the props into the styled component
       file should be moved. This is to keep the component file with less code
     */
-    <motion.div
-      initial={{ y: 10, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, delay: 0.5 }}
-      viewport={{ once: true }}
-    >
+    <Effects>
       <CardLink href={`/pokemon/${name}`}>
         <Card>
+          <Anchor id={name} />
           <CardActionArea>
             <PokedexNumber>{pokedexNumber}</PokedexNumber>
             {pokemonImage && <Image src={pokemonImage} alt={name} />}
@@ -50,7 +54,7 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
           </CardActionArea>
         </Card>
       </CardLink>
-    </motion.div>
+    </Effects>
   );
 };
 

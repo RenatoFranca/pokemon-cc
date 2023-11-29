@@ -1,8 +1,33 @@
 "use client";
 
-import { Typography, TypographyProps, styled } from "@mui/material";
+import {
+  Card as MuiCard,
+  Typography,
+  TypographyProps,
+  styled,
+} from "@mui/material";
+import { motion } from "framer-motion";
 import NextImage from "next/image";
 import Link from "next/link";
+
+export const Effects = styled(motion.div)``;
+Effects.defaultProps = {
+  initial: {
+    y: 10,
+    opacity: 0,
+  },
+  whileInView: {
+    y: 0,
+    opacity: 1,
+  },
+  transition: {
+    duration: 1,
+    delay: 0.1,
+  },
+  viewport: {
+    once: true,
+  },
+};
 
 export const CardLink = styled(Link)`
   text-decoration: none;
@@ -10,6 +35,15 @@ export const CardLink = styled(Link)`
 CardLink.defaultProps = {
   passHref: true,
 };
+
+export const Card = styled(MuiCard)`
+  position: relative;
+`;
+
+export const Anchor = styled("span")`
+  position: absolute;
+  top: -90px;
+`;
 
 export const Image = styled(NextImage)`
   object-fit: contain;
