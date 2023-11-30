@@ -1,11 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import ScaleIcon from "@mui/icons-material/Scale";
+import { PokemonDetailsWeightProps } from "./PokemonDetails.types";
 
-type PokemonDetailsWeight = {
-  weight?: number;
-};
-
-export const PokemonDetailsWeight = ({ weight }: PokemonDetailsWeight) => {
+export const PokemonDetailsWeight = ({ weight }: PokemonDetailsWeightProps) => {
   return (
     <>
       {weight && (

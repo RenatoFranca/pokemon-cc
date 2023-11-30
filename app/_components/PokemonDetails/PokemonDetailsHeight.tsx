@@ -1,9 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import HeightIcon from "@mui/icons-material/Height";
-
-type PokemonDetailsHeightProps = {
-  height?: number;
-};
+import { PokemonDetailsHeightProps } from "./PokemonDetails.types";
 
 export const PokemonDetailsHeight = ({ height }: PokemonDetailsHeightProps) => {
   return (

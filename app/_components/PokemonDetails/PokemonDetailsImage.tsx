@@ -1,10 +1,5 @@
-import { type } from "os";
 import { Image } from "./PokemonDetails.styles";
-
-type PokemonDetailsImageProps = {
-  image?: string;
-  name: string;
-};
+import { PokemonDetailsImageProps } from "./PokemonDetails.types";
 
 export const PokemonDetailsImage = ({
   image,

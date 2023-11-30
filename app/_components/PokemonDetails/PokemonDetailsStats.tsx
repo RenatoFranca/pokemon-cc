@@ -1,11 +1,7 @@
 import { Stack } from "@mui/material";
-import { ReactNode } from "react";
+import { PokemonDetailsStatsProps } from "./PokemonDetails.types";
 
-type PokemonDetailsStats = {
-  children: ReactNode;
-};
-
-export const PokemonDetailsStats = ({ children }: PokemonDetailsStats) => {
+export const PokemonDetailsStats = ({ children }: PokemonDetailsStatsProps) => {
   return (
     <Stack direction="row" spacing={1} justifyContent="center" marginTop={4}>
       {children}

@@ -1,9 +1,5 @@
 import { CardContent } from "@mui/material";
-import { ReactNode } from "react";
-
-type PokemonDetailsContentProps = {
-  children: ReactNode;
-};
+import { PokemonDetailsContentProps } from "./PokemonDetails.types";
 
 export const PokemonDetailsContent = ({
   children,

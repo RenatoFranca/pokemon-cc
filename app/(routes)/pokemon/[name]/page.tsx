@@ -6,10 +6,11 @@ import useSWR from "swr";
 import { PokemonDetailsResponse } from "@/app/_components/PokemonDetails/PokemonDetails.types";
 import fetcher from "@/app/_utils/fetcher";
 import PokemonDetailsLoading from "@/app/_components/PokemonDetails/PokemonDetails.loading";
+import { PageProps } from "./page.types";
 
-const Page = ({ params }: { params: { name: string } }) => {
+const Page = ({ params }: PageProps) => {
   const name = params.name;
-  const { data, error, isLoading } = useSWR<PokemonDetailsResponse>(
+  const { data, isLoading } = useSWR<PokemonDetailsResponse>(
     `https://pokeapi.co/api/v2/pokemon/${name}`,
     fetcher
   );
@@ -18,7 +19,7 @@ const Page = ({ params }: { params: { name: string } }) => {
 
   const id = data?.id;
   const types = data?.types;
-  const image = data?.sprites.front_default;
+  const image = data?.sprites?.front_default;
   const weight = data?.weight;
   const height = data?.height;
   const abilities = data?.abilities;

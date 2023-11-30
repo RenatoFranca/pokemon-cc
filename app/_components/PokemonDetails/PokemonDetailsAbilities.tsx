@@ -1,8 +1,5 @@
 import { Box, Typography } from "@mui/material";
-
-type PokemonDetailsAbilitiesProps = {
-  abilities?: { ability: { name: string }; slot: number }[];
-};
+import { PokemonDetailsAbilitiesProps } from "./PokemonDetails.types";
 
 export const PokemonDetailsAbilities = ({
   abilities,
