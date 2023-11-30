@@ -22,7 +22,7 @@ export const PokemonDetailsWeight = ({ weight }: PokemonDetailsWeightProps) => {
             gap={1}
             fontSize="0.8rem"
           >
-            <ScaleIcon fontSize="small" /> {weight * 0.1} kg
+            <ScaleIcon fontSize="small" /> {(weight * 0.1).toFixed(1)} kg
           </Typography>
           <Typography
             color="text.secondary"
