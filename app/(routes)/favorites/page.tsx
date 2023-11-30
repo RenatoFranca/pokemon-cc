@@ -25,7 +25,7 @@ const Page = () => {
 
   return (
     <Container sx={{ marginTop: 10, marginBottom: 4 }}>
-      <h2>Pokémon Favorites</h2>
+      <h2>My Favorites</h2>
       <Grid container spacing={{ xs: 2, md: 4 }}>
         <Grid item xs={12}>
           <Alert severity="warning">
