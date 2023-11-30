@@ -9,6 +9,7 @@ import {
 import { motion } from "framer-motion";
 import NextImage from "next/image";
 import Link from "next/link";
+import FavoriteIcon from "../Favorite";
 
 export const Effects = styled(motion.div)``;
 Effects.defaultProps = {
@@ -71,6 +72,12 @@ Name.defaultProps = {
   component: "div",
   variant: "h5",
 };
+
+export const Favorite = styled(FavoriteIcon)(({ theme }) => ({
+  position: "absolute",
+  left: 0,
+  padding: theme.spacing(1),
+}));
 
 // Using MUI's theme spacing to add padding
 export const PokedexNumber = styled(Typography)(({ theme }) => ({
