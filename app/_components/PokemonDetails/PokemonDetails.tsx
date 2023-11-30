@@ -90,7 +90,7 @@ const PokemonDetails = ({ name }: PokemonDetailsProps) => {
       )}
       <CardHeader>
         <Link
-          href="/"
+          href={`/#${name}`}
           style={{ color: "black", display: "flex", paddingRight: "16px" }}
         >
           <KeyboardBackspaceIcon
