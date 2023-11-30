@@ -13,7 +13,7 @@ export const PokemonDetailsHeader = ({ id, name }: PokemonDetailsHeader) => {
   return (
     <CardHeader>
       <Link
-        href="/"
+        href={`/#${name}`}
         style={{ color: "black", display: "flex", paddingRight: "16px" }}
       >
         <KeyboardBackspaceIcon fontSize="large" sx={{ alignSelf: "center" }} />
