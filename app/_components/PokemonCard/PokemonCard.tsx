@@ -7,6 +7,7 @@ import {
   Card,
   CardLink,
   Effects,
+  Favorite,
   Image,
   Name,
   PokedexNumber,
@@ -14,7 +15,6 @@ import {
 import useSWR from "swr";
 import fetcher from "@/app/_utils/fetcher";
 import PokemonCardLoading from "./PokemonCard.loading";
-import { motion } from "framer-motion";
 
 const PokemonCard = ({ url }: PokemonCardProps) => {
   /*
@@ -32,6 +32,7 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
   if (isLoading) return <PokemonCardLoading />;
 
   // Using destructuring to keep the code as clean as possible
+  // @TODO: Improve checking for null
   const { id, name, sprites } = data!!;
   const pokedexNumber = `#${id.toString().padStart(4, "0")}`;
   const pokemonImage = sprites.front_default;
@@ -46,6 +47,7 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
         <Card>
           <Anchor id={name} />
           <CardActionArea>
+            <Favorite id={id} display />
             <PokedexNumber>{pokedexNumber}</PokedexNumber>
             {pokemonImage && <Image src={pokemonImage} alt={name} />}
             <CardContent>

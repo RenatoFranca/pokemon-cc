@@ -17,7 +17,6 @@ const Navbar = () => {
           >
             Pokémon CC
           </Typography>
-          {/* @TODO */}
           <Button LinkComponent={Link} href="/favorites" color="inherit">
             Favorites
           </Button>
