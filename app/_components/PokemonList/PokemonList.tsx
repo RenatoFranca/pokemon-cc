@@ -49,12 +49,15 @@ const PokemonList = () => {
             <PokemonCard url={pokemon.url} />
           </Grid>
         ))}
+        {isLoading && (
+          <Box sx={{ display: "flex", justifyContent: "center", height: 100 }}>
+            <CircularProgress
+              aria-label="Loading"
+              sx={{ alignSelf: "center" }}
+            />
+          </Box>
+        )}
       </Grid>
-      {!isLoading && (
-        <Box sx={{ display: "flex", justifyContent: "center", height: 100 }}>
-          <CircularProgress sx={{ alignSelf: "center" }} />
-        </Box>
-      )}
     </Container>
   );
 };
