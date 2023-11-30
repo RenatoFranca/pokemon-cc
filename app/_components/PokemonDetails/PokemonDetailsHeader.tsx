@@ -1,8 +1,12 @@
-import { CardHeader, Favorite, NotFavorite } from "./PokemonDetails.styles";
-import Link from "next/link";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import { Typography } from "@mui/material";
-import { PokedexNumber } from "../PokemonCard/PokemonCard.styles";
+import {
+  BackIcon,
+  BackLink,
+  CardHeader,
+  Favorite,
+  Name,
+  NotFavorite,
+  PokedexNumber,
+} from "./PokemonDetails.styles";
 import { useEffect, useState } from "react";
 import { PokemonDetailsHeaderProps } from "./PokemonDetails.types";
 
@@ -11,6 +15,8 @@ export const PokemonDetailsHeader = ({
   name,
 }: PokemonDetailsHeaderProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const pokedexNumber = `#${id?.toString().padStart(4, "0")}`;
 
   useEffect(() => {
     const storage = localStorage.getItem("favorite");
@@ -23,68 +29,32 @@ export const PokemonDetailsHeader = ({
     }
   }, [id]);
 
-  const addFavorite = (id: number) => {
-    const storage = localStorage.getItem("favorite");
-    let favorites = [];
-
-    if (storage) {
-      favorites = JSON.parse(storage);
-    }
-
-    favorites.push(id);
-    localStorage.setItem("favorite", JSON.stringify(favorites));
-
-    setIsFavorite(true);
-  };
-
-  const removeFavorite = (id: number) => {
+  const toggleFavorite = (id: number) => {
     const storage = localStorage.getItem("favorite");
     let favorites = [];
 
     if (storage) {
       favorites = JSON.parse(storage);
       favorites = favorites.filter((f: number) => f !== id);
-
-      localStorage.setItem("favorite", JSON.stringify(favorites));
-
-      setIsFavorite(false);
     }
+
+    if (!isFavorite || !storage) {
+      favorites.push(id);
+    }
+
+    localStorage.setItem("favorite", JSON.stringify(favorites));
+    setIsFavorite((prev) => !prev);
   };
 
   return (
     <CardHeader>
-      <Link
-        href={`/#${name}`}
-        style={{ color: "black", display: "flex", paddingRight: "16px" }}
-      >
-        <KeyboardBackspaceIcon fontSize="large" sx={{ alignSelf: "center" }} />
-      </Link>
-      <Typography variant="h4" textTransform="capitalize">
-        {name}
-      </Typography>
-      {!isFavorite && id && (
-        <NotFavorite
-          onClick={() => addFavorite(id)}
-          fontSize="large"
-          sx={{ alignSelf: "center" }}
-        />
-      )}
-      {isFavorite && id && (
-        <Favorite
-          onClick={() => removeFavorite(id)}
-          fontSize="large"
-          sx={{ alignSelf: "center" }}
-        />
-      )}
-      {id && (
-        <PokedexNumber
-          color="text.secondary"
-          gutterBottom
-          sx={{ fontSize: "1.5rem" }}
-        >
-          {`#${id?.toString().padStart(4, "0")}`}
-        </PokedexNumber>
-      )}
+      <BackLink href={`/#${name}`}>
+        <BackIcon />
+      </BackLink>
+      <Name>{name}</Name>
+      {!isFavorite && id && <NotFavorite onClick={() => toggleFavorite(id)} />}
+      {isFavorite && id && <Favorite onClick={() => toggleFavorite(id)} />}
+      {id && <PokedexNumber>{pokedexNumber}</PokedexNumber>}
     </CardHeader>
   );
 };

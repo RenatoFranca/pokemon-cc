@@ -73,14 +73,12 @@ Name.defaultProps = {
 };
 
 // Using MUI's theme spacing to add padding
-export const PokedexNumber = styled(Typography)<TypographyProps>(
-  ({ theme }) => ({
-    position: "absolute",
-    right: 0,
-    padding: theme.spacing(1),
-    fontSize: "0.8rem",
-  })
-);
+export const PokedexNumber = styled(Typography)(({ theme }) => ({
+  position: "absolute",
+  right: 0,
+  padding: theme.spacing(1),
+  fontSize: "0.8rem",
+}));
 
 PokedexNumber.defaultProps = {
   color: "textSecondary",
