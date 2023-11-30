@@ -49,7 +49,8 @@ This is a new project, there was not much time available and as expected it need
 - Show the evolution chain
 - Improve the layout
 - Some components need improvements:
+  - `PokemonDetails.tsx`
   - `PokemonList.tsx`
   - `app/template.tsx`
-- Add a better pre-loader in the Pokémon list page
+- ~~Add a better pre-loader in the Pokémon list page~~
 - Add a pre-loader in the Pokémon details page
