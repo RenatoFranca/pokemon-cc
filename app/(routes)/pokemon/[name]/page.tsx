@@ -1,6 +1,6 @@
 "use client";
 
-import { PokemonDetails } from "@/app/_components/PokemonDetails";
+import { PokemonDetails as Details } from "@/app/_components/PokemonDetails";
 import { PageContainer } from "./page.styles";
 import useSWR from "swr";
 import { PokemonDetailsResponse } from "@/app/_components/PokemonDetails/PokemonDetails.types";
@@ -26,18 +26,18 @@ const Page = ({ params }: PageProps) => {
 
   return (
     <PageContainer>
-      <PokemonDetails.Root>
-        <PokemonDetails.Header id={id} name={name} />
-        <PokemonDetails.Image image={image} name={name} />
-        <PokemonDetails.Content>
-          <PokemonDetails.Types types={types} />
-          <PokemonDetails.Stats>
-            <PokemonDetails.Weight weight={weight} />
-            <PokemonDetails.Height height={height} />
-            <PokemonDetails.Abilities abilities={abilities} />
-          </PokemonDetails.Stats>
-        </PokemonDetails.Content>
-      </PokemonDetails.Root>
+      <Details.Root>
+        <Details.Header id={id} name={name} />
+        <Details.Image image={image} name={name} />
+        <Details.Content>
+          <Details.Types types={types} />
+          <Details.Stats>
+            <Details.Weight weight={weight} />
+            <Details.Height height={height} />
+            <Details.Abilities abilities={abilities} />
+          </Details.Stats>
+        </Details.Content>
+      </Details.Root>
     </PageContainer>
   );
 };

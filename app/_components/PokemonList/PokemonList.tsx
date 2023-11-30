@@ -1,11 +1,12 @@
 "use client";
 
-import { Box, CircularProgress, Container, Grid } from "@mui/material";
+import { Container } from "@mui/material";
 import PokemonCard from "../PokemonCard";
 import { useEffect } from "react";
 import useSWRInfinite from "swr/infinite";
 import { useInView } from "react-intersection-observer";
 import fetcher from "@/app/_utils/fetcher";
+import { Grid, GridItem, Loading, ProgressIcon } from "./PokemonList.styles";
 
 const PokemonList = () => {
   const { data, setSize, isLoading } = useSWRInfinite(
@@ -18,6 +19,8 @@ const PokemonList = () => {
   );
 
   const [ref, inView] = useInView({ rootMargin: "200px" });
+  const getItemRef = (index: number) =>
+    list.length === index + 1 ? ref : null;
 
   const list: any[] = data ? data.map((v) => v.results).flat() : [];
 
@@ -35,27 +38,17 @@ const PokemonList = () => {
 
   return (
     <Container sx={{ marginTop: 10, marginBottom: 4 }}>
-      <h2>Pokemén List</h2>
-      <Grid container spacing={{ xs: 2, md: 4 }}>
+      <h2>Pokémon List</h2>
+      <Grid>
         {list.map((pokemon, index) => (
-          <Grid
-            ref={list.length === index + 1 ? ref : null}
-            key={index}
-            item
-            xs={6}
-            md={4}
-            lg={3}
-          >
+          <GridItem ref={getItemRef(index)} key={index}>
             <PokemonCard url={pokemon.url} />
-          </Grid>
+          </GridItem>
         ))}
         {isLoading && (
-          <Box sx={{ display: "flex", justifyContent: "center", height: 100 }}>
-            <CircularProgress
-              aria-label="Loading"
-              sx={{ alignSelf: "center" }}
-            />
-          </Box>
+          <Loading>
+            <ProgressIcon />
+          </Loading>
         )}
       </Grid>
     </Container>
