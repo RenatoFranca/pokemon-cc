@@ -33,13 +33,15 @@ export type PokemonDetailsResponse = {
 };
 
 export type PokemonDetailsHeaderProps = {
-  id?: number;
   name: string;
+  id?: number;
+  isLoading?: boolean;
 };
 
 export type PokemonDetailsImageProps = {
-  image?: string;
   name: string;
+  image?: string;
+  isLoading?: boolean;
 };
 
 export type PokemonDetailsContentProps = {
@@ -52,12 +54,15 @@ export type PokemonDetailsStatsProps = {
 
 export type PokemonDetailsWeightProps = {
   weight?: number;
+  isLoading?: boolean;
 };
 
 export type PokemonDetailsHeightProps = {
   height?: number;
+  isLoading?: boolean;
 };
 
 export type PokemonDetailsAbilitiesProps = {
   abilities?: Ability[];
+  isLoading?: boolean;
 };

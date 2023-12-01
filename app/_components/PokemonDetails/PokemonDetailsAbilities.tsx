@@ -1,32 +1,30 @@
-import { Box, Typography } from "@mui/material";
 import { PokemonDetailsAbilitiesProps } from "./PokemonDetails.types";
+import { AbilityBox, AbilityName, AbilityTitle } from "./PokemonDetails.styles";
+import { Skeleton } from "@mui/material";
+
+const Loading = () => {
+  return (
+    <AbilityBox>
+      <Skeleton variant="rounded" width="100%" height={60} />
+    </AbilityBox>
+  );
+};
 
 export const PokemonDetailsAbilities = ({
   abilities,
+  isLoading,
 }: PokemonDetailsAbilitiesProps) => {
-  return (
-    <>
-      {abilities && (
-        <Box flex={1} display="flex" flexDirection="column" paddingX={2}>
-          <Box flex={1} textTransform="capitalize">
-            {abilities.map(({ ability, slot }) => (
-              <Typography key={slot} variant="h6" fontSize="0.8rem">
-                {ability.name}
-              </Typography>
-            ))}
-          </Box>
+  if (isLoading) return <Loading />;
 
-          <Typography
-            variant="h6"
-            fontSize="0.8rem"
-            textAlign="center"
-            marginTop={1}
-            color="text.secondary"
-          >
-            Abilities
-          </Typography>
-        </Box>
-      )}
-    </>
+  if (!abilities) return null;
+
+  return (
+    <AbilityBox>
+      {abilities.map(({ ability, slot }) => (
+        <AbilityName key={slot}>{ability.name}</AbilityName>
+      ))}
+
+      <AbilityTitle>Abilities</AbilityTitle>
+    </AbilityBox>
   );
 };

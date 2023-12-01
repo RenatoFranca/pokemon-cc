@@ -2,8 +2,12 @@ import PokemonTypes from "../PokemonTypes";
 
 export interface PokemonDetailsTypes {
   types?: { type: { name: string }; slot: number }[];
+  isLoading?: boolean;
 }
 
-export const PokemonDetailsTypes = ({ types }: PokemonDetailsTypes) => {
-  return <>{types && <PokemonTypes types={types} />}</>;
+export const PokemonDetailsTypes = ({
+  types,
+  isLoading,
+}: PokemonDetailsTypes) => {
+  return <PokemonTypes types={types} isLoading={isLoading} />;
 };

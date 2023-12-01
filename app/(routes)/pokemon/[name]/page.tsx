@@ -5,7 +5,6 @@ import { PageContainer } from "./page.styles";
 import useSWR from "swr";
 import { PokemonDetailsResponse } from "@/app/_components/PokemonDetails/PokemonDetails.types";
 import fetcher from "@/app/_utils/fetcher";
-import PokemonDetailsLoading from "@/app/_components/PokemonDetails/PokemonDetails.loading";
 import { PageProps } from "./page.types";
 
 const Page = ({ params }: PageProps) => {
@@ -15,7 +14,7 @@ const Page = ({ params }: PageProps) => {
     fetcher
   );
 
-  if (isLoading) return <PokemonDetailsLoading />;
+  const isLoading2 = true;
 
   const id = data?.id;
   const types = data?.types;
@@ -27,14 +26,14 @@ const Page = ({ params }: PageProps) => {
   return (
     <PageContainer>
       <Details.Root>
-        <Details.Header id={id} name={name} />
-        <Details.Image image={image} name={name} />
+        <Details.Header id={id} name={name} isLoading={isLoading} />
+        <Details.Image image={image} name={name} isLoading={isLoading} />
         <Details.Content>
-          <Details.Types types={types} />
+          <Details.Types types={types} isLoading={isLoading} />
           <Details.Stats>
-            <Details.Weight weight={weight} />
-            <Details.Height height={height} />
-            <Details.Abilities abilities={abilities} />
+            <Details.Weight weight={weight} isLoading={isLoading} />
+            <Details.Height height={height} isLoading={isLoading} />
+            <Details.Abilities abilities={abilities} isLoading={isLoading} />
           </Details.Stats>
         </Details.Content>
       </Details.Root>

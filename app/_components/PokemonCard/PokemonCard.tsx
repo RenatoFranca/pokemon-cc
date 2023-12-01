@@ -32,9 +32,10 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
   if (isLoading) return <PokemonCardLoading />;
 
   // Using destructuring to keep the code as clean as possible
-  // @TODO: Improve checking for null
-  const { id, name, sprites } = data!!;
-  const pokedexNumber = `#${id.toString().padStart(4, "0")}`;
+  const id = data?.id;
+  const name = data?.name || "";
+  const sprites = data?.sprites;
+  const pokedexNumber = `#${id?.toString().padStart(4, "0")}`;
   const pokemonImage = sprites?.front_default || "/images/whos-that.png";
 
   return (

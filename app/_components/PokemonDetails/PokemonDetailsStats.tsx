@@ -1,10 +1,7 @@
 import { Stack } from "@mui/material";
 import { PokemonDetailsStatsProps } from "./PokemonDetails.types";
+import { StatsStack } from "./PokemonDetails.styles";
 
 export const PokemonDetailsStats = ({ children }: PokemonDetailsStatsProps) => {
-  return (
-    <Stack direction="row" spacing={1} justifyContent="center" marginTop={4}>
-      {children}
-    </Stack>
-  );
+  return <StatsStack>{children}</StatsStack>;
 };

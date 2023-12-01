@@ -1,39 +1,36 @@
-import { Box, Typography } from "@mui/material";
-import ScaleIcon from "@mui/icons-material/Scale";
 import { PokemonDetailsWeightProps } from "./PokemonDetails.types";
+import {
+  WeightBox,
+  WeightIcon,
+  WeightName,
+  WeightTitle,
+} from "./PokemonDetails.styles";
+import { Skeleton } from "@mui/material";
 
-export const PokemonDetailsWeight = ({ weight }: PokemonDetailsWeightProps) => {
+const Loading = () => {
   return (
-    <>
-      {weight && (
-        <Box
-          flex={1}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          paddingX={2}
-          flexDirection="column"
-        >
-          <Typography
-            variant="h6"
-            flex={1}
-            display="flex"
-            alignItems="center"
-            gap={1}
-            fontSize="0.8rem"
-          >
-            <ScaleIcon fontSize="small" /> {(weight * 0.1).toFixed(1)} kg
-          </Typography>
-          <Typography
-            color="text.secondary"
-            variant="h6"
-            fontSize="0.8rem"
-            marginTop={1}
-          >
-            Weight
-          </Typography>
-        </Box>
-      )}
-    </>
+    <WeightBox>
+      <Skeleton variant="rounded" width="100%" height={60} />
+    </WeightBox>
+  );
+};
+
+export const PokemonDetailsWeight = ({
+  weight,
+  isLoading,
+}: PokemonDetailsWeightProps) => {
+  if (isLoading) return <Loading />;
+
+  if (!weight) return null;
+
+  const weightInKg = `${(weight * 0.1).toFixed(1)} kg`;
+
+  return (
+    <WeightBox>
+      <WeightName>
+        <WeightIcon /> {weightInKg}
+      </WeightName>
+      <WeightTitle>Weight</WeightTitle>
+    </WeightBox>
   );
 };

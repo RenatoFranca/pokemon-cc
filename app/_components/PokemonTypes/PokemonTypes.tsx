@@ -1,12 +1,23 @@
-import { Chip, ChipPropsColorOverrides, Stack } from "@mui/material";
+import { Chip, ChipPropsColorOverrides, Skeleton, Stack } from "@mui/material";
 import React from "react";
 import { OverridableStringUnion } from "@mui/types";
 
 type PokemonTypesProps = {
-  types: { type: { name: string }; slot: number }[];
+  types?: { type: { name: string }; slot: number }[];
+  isLoading?: boolean;
 };
 
-const PokemonTypes = ({ types }: PokemonTypesProps) => {
+const Loading = () => {
+  return (
+    <Stack direction="row" spacing={1} justifyContent="center">
+      <Skeleton variant="text" width="30%" height={50} />
+    </Stack>
+  );
+};
+
+const PokemonTypes = ({ types, isLoading }: PokemonTypesProps) => {
+  if (isLoading) return <Loading />;
+
   return (
     <Stack direction="row" spacing={1} justifyContent="center">
       {types &&

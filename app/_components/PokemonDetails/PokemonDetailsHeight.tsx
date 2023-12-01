@@ -1,40 +1,36 @@
-import { Box, Typography } from "@mui/material";
-import HeightIcon from "@mui/icons-material/Height";
 import { PokemonDetailsHeightProps } from "./PokemonDetails.types";
+import {
+  HeightBox,
+  HeightIcon,
+  HeightName,
+  HeightTitle,
+} from "./PokemonDetails.styles";
+import { Skeleton } from "@mui/material";
 
-export const PokemonDetailsHeight = ({ height }: PokemonDetailsHeightProps) => {
+const Loading = () => {
   return (
-    <>
-      {height && (
-        <Box
-          flex={1}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          borderLeft="solid 1px #dbd9d9"
-          borderRight="solid 1px #dbd9d9"
-          paddingX={2}
-          flexDirection="column"
-        >
-          <Typography
-            variant="h6"
-            flex={1}
-            display="flex"
-            alignItems="center"
-            fontSize="0.8rem"
-          >
-            <HeightIcon fontSize="small" /> {(height * 0.1).toFixed(1)} m
-          </Typography>
-          <Typography
-            color="text.secondary"
-            variant="h6"
-            fontSize="0.8rem"
-            marginTop={1}
-          >
-            Height
-          </Typography>
-        </Box>
-      )}
-    </>
+    <HeightBox>
+      <Skeleton variant="rounded" width="100%" height={60} />
+    </HeightBox>
+  );
+};
+
+export const PokemonDetailsHeight = ({
+  height,
+  isLoading,
+}: PokemonDetailsHeightProps) => {
+  if (isLoading) return <Loading />;
+
+  if (!height) return null;
+
+  const heightInMeters = `${(height * 0.1).toFixed(1)} m`;
+
+  return (
+    <HeightBox>
+      <HeightName>
+        <HeightIcon /> {heightInMeters}
+      </HeightName>
+      <HeightTitle>Height</HeightTitle>
+    </HeightBox>
   );
 };
