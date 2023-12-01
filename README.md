@@ -41,7 +41,7 @@ A lib that uses the `Intersection Observer API` that is used in this project to 
 
 ## Next steps
 
-This is a new project, there was not much time available and as expected it needs a lot of improvements:
+This is a new project and as expected it needs improvements:
 
 - Unit tests
 - ~~Favorite option~~
@@ -49,8 +49,8 @@ This is a new project, there was not much time available and as expected it need
 - Show the evolution chain
 - Improve the layout
 - Some components need improvements:
-  - `PokemonDetails.tsx`
-  - `PokemonList.tsx`
+  - ~~`PokemonDetails.tsx`~~
+  - ~~`PokemonList.tsx`~~
   - `app/template.tsx`
 - ~~Add a better pre-loader in the Pokémon list page~~
-- Add a pre-loader in the Pokémon details page
+- ~~Add a pre-loader in the Pokémon details page~~
