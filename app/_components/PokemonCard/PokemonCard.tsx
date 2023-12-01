@@ -35,7 +35,7 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
   // @TODO: Improve checking for null
   const { id, name, sprites } = data!!;
   const pokedexNumber = `#${id.toString().padStart(4, "0")}`;
-  const pokemonImage = sprites.front_default;
+  const pokemonImage = sprites?.front_default || "/images/whos-that.png";
 
   return (
     /*
