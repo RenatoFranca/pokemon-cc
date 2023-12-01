@@ -15,6 +15,7 @@ import {
 import useSWR from "swr";
 import fetcher from "@/app/_utils/fetcher";
 import PokemonCardLoading from "./PokemonCard.loading";
+import alternativeImage from "/public/images/whos-that.png";
 
 const PokemonCard = ({ url }: PokemonCardProps) => {
   /*
@@ -35,7 +36,7 @@ const PokemonCard = ({ url }: PokemonCardProps) => {
   // @TODO: Improve checking for null
   const { id, name, sprites } = data!!;
   const pokedexNumber = `#${id.toString().padStart(4, "0")}`;
-  const pokemonImage = sprites?.front_default || "/images/whos-that.png";
+  const pokemonImage = sprites?.front_default || alternativeImage.src;
 
   return (
     /*

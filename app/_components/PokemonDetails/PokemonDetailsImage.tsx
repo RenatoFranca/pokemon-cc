@@ -1,12 +1,12 @@
 import { Image } from "./PokemonDetails.styles";
 import { PokemonDetailsImageProps } from "./PokemonDetails.types";
+import alternativeImage from "/public/images/whos-that.png";
 
 export const PokemonDetailsImage = ({
   image,
   name,
 }: PokemonDetailsImageProps) => {
-  const alternativeImage = "/images/whos-that.png";
-  image = image || alternativeImage;
+  image = image || alternativeImage.src;
 
   return <>{image && <Image src={image} alt={name} />}</>;
 };
