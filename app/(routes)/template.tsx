@@ -121,7 +121,7 @@ const customTheme = createTheme({
       contrastText: "#FFFFFF",
     },
     electric: {
-      main: "##F7D02C",
+      main: "#F7D02C",
       light: "#FAE7A8",
       dark: "#A1871F",
       contrastText: "#FFFFFF",
