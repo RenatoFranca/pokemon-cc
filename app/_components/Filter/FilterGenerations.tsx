@@ -16,7 +16,11 @@ type QueryString = {
   value: string;
 };
 
-export const FilterGenerations = ({ options }: any) => {
+type FilterGenerationsProps = {
+  options: any;
+};
+
+export const FilterGenerations = ({ options }: FilterGenerationsProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -78,7 +82,7 @@ export const FilterGenerations = ({ options }: any) => {
         label="Generation"
         onChange={handleChange}
       >
-        {options.map((option: any) => {
+        {options.map((option: { name: string }) => {
           return (
             <MenuItem key={option.name} value={option.name}>
               {option.name}

@@ -8,7 +8,12 @@ import Image from "next/image";
 import * as css from "./Card.css";
 import Link from "next/link";
 
-const Card = ({ id, name }: any) => {
+type CardProps = {
+  id: number;
+  name: string;
+};
+
+const Card = ({ id, name }: CardProps) => {
   const pokedexId = id.toString().padStart(3, "0");
 
   return (

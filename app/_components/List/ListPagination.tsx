@@ -2,14 +2,19 @@
 
 import { Box, Pagination } from "@mui/material";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { ChangeEvent, useCallback } from "react";
 
-export const ListPagination = ({ total, page }: any) => {
+type ListPaginationProps = {
+  total: number;
+  page: string;
+};
+
+export const ListPagination = ({ total, page }: ListPaginationProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const onChange = (_event: any, page: number) => {
+  const onChange = (_event: ChangeEvent<unknown>, page: number) => {
     router.push(pathname + "?" + createQueryString("page", page.toString()));
   };
 
