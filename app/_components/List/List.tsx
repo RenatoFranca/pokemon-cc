@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ListPagination } from "./ListPagination";
-import { Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
+import Card from "../Card";
 
 const pokemonList = async (url: string) => {
   const { data } = await axios.get(url);
@@ -28,15 +29,15 @@ const List = async ({ url, page }: any) => {
 
   return (
     <Container>
-      <ul>
+      <Grid container spacing={2} marginTop={0} marginBottom={2}>
         {sortedList?.map((item: any) => {
           return (
-            <li key={item.name}>
-              {item.id} - {item.name} [{item.url}]
-            </li>
+            <Grid lg={3} md={4} xs={6} item key={item.name}>
+              <Card id={item.id} name={item.name} />
+            </Grid>
           );
         })}
-      </ul>
+      </Grid>
       <ListPagination total={totalPages} page={page} />
     </Container>
   );
