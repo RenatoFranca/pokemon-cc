@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import ThemeProvider from "../_components/ThemeProvider/ThemeProvider";
+import Navbar from "../_components/Navbar";
 
 export const metadata: Metadata = {
   title: "Pokémon CC",
@@ -12,7 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>
+          <Navbar />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

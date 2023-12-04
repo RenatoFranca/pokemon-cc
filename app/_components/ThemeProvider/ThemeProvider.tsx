@@ -4,11 +4,9 @@ import {
   CssBaseline,
   PaletteColorOptions,
   PaletteOptions,
-  ThemeProvider,
+  ThemeProvider as MuiThemeProvider,
   createTheme,
 } from "@mui/material";
-import Navbar from "../_components/Navbar";
-import { red, yellow } from "@mui/material/colors";
 
 interface MyPaletteOptions extends PaletteOptions {
   normal?: PaletteColorOptions;
@@ -211,23 +209,58 @@ const customTheme = createTheme({
       contrastText: "#FFFFFF",
     },
     primary: {
-      main: red[900],
+      light: "#6ab7ff",
+      main: "#001F3F", // Navy Blue
+      dark: "#0069c0",
+      contrastText: "#FFFFFF",
     },
     secondary: {
-      main: yellow[500],
+      light: "#8bf6ff",
+      main: "#008080", // Teal
+      dark: "#087f23",
+      contrastText: "#FFFFFF",
+    },
+    background: {
+      default: "#F5F5F5", // Light Gray
+      paper: "#FFFFFF", // White
+    },
+    text: {
+      primary: "#333333", // Dark Gray
     },
     mode: "light",
   } as MyPaletteOptions,
 });
 
-const Template = ({ children }: { children: React.ReactNode }) => {
+// @TODO: Create a dark theme
+// const darkThemePalette: PaletteOptions = {
+//   primary: {
+//     light: '#6ab7ff',
+//     main: '#001F3F', // Navy Blue
+//     dark: '#0069c0',
+//     contrastText: '#fff',
+//   },
+//   secondary: {
+//     light: '#8bf6ff',
+//     main: '#008080', // Teal
+//     dark: '#087f23',
+//     contrastText: '#fff',
+//   },
+//   background: {
+//     default: '#121212', // Dark Gray
+//     paper: '#333333', // Darker Gray
+//   },
+//   text: {
+//     primary: '#FFFFFF', // White
+//   },
+// };
+
+const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ThemeProvider theme={customTheme}>
+    <MuiThemeProvider theme={customTheme}>
       <CssBaseline />
-      <Navbar />
       {children}
-    </ThemeProvider>
+    </MuiThemeProvider>
   );
 };
 
-export default Template;
+export default ThemeProvider;
