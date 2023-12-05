@@ -33,6 +33,22 @@ const Page = async ({ searchParams }: PageProps) => {
   const url = getUrl(generations, generation);
   const currentPage = page || "1";
 
+  // Remove generation ix
+  generations?.splice(8, 1);
+
+  console.log("--------------------");
+  console.log(
+    "!generations.includes(generation)",
+    !generations.includes(generation)
+  );
+
+  if (
+    generations.some(({ name }) => name === generation) === false &&
+    generation
+  ) {
+    throw Error("Invalid generation");
+  }
+
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>

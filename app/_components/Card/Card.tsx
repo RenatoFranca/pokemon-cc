@@ -7,11 +7,8 @@ import {
 import Image from "next/image";
 import * as css from "./Card.css";
 import Link from "next/link";
-
-type CardProps = {
-  id: number;
-  name: string;
-};
+import { CardProps } from "./Card.types";
+import DexNumber from "@/app/_core/DexNumber/DexNumber";
 
 const Card = ({ id, name }: CardProps) => {
   const pokedexId = id.toString().padStart(3, "0");
@@ -20,9 +17,7 @@ const Card = ({ id, name }: CardProps) => {
     <Link className={css.link} href={`/pokemon/${name}`}>
       <MuiCard>
         <CardActionArea>
-          <Typography
-            className={css.pokedexNumber}
-          >{`#${pokedexId}`}</Typography>
+          <DexNumber value={id} />
           <Image
             height={200}
             width={200}

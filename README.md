@@ -54,3 +54,4 @@ This is a new project and as expected it needs improvements:
   - `app/template.tsx`
 - ~~Add a better pre-loader in the Pokémon list page~~
 - ~~Add a pre-loader in the Pokémon details page~~
+- Apply the Atomic Design
