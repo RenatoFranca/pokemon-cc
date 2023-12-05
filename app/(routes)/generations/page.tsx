@@ -1,6 +1,6 @@
 import { Filter } from "@/app/_components/Filter";
 import List from "@/app/_components/List";
-import axios from "axios";
+import { getGenerations } from "@/app/_services/GamesService";
 import { Suspense } from "react";
 
 type PageProps = {
@@ -8,12 +8,6 @@ type PageProps = {
     generation: string;
     page: string;
   };
-};
-
-const getGenerations = async () => {
-  const { data } = await axios.get("https://pokeapi.co/api/v2/generation");
-
-  return data?.results;
 };
 
 const getUrl = (
@@ -35,12 +29,6 @@ const Page = async ({ searchParams }: PageProps) => {
 
   // Remove generation ix
   generations?.splice(8, 1);
-
-  console.log("--------------------");
-  console.log(
-    "!generations.includes(generation)",
-    !generations.includes(generation)
-  );
 
   if (
     generations.some(({ name }) => name === generation) === false &&
